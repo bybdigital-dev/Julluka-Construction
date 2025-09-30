@@ -37,7 +37,7 @@ export function Hero({ onNavigate }: HeroProps) {
           className="text-lg md:text-xl text-white/95 max-w-3xl mx-auto mb-8"
           data-testid="text-hero-subtitle"
         >
-          Paving, tiling, small builds, painting, plastering & gardening—done
+          Paving, tiling, construction builds, painting, plastering & gardening—done
           right, on time, and on budget.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">

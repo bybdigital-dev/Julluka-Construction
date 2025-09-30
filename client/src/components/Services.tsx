@@ -32,7 +32,7 @@ export function Services({ onNavigate }: ServicesProps) {
     },
     {
       icon: Flame,
-      title: "Small Builds",
+      title: "Construction Building",
       description: "Boma fire pits, braai areas, pergolas, and planters to enhance your outdoor space.",
     },
     {
