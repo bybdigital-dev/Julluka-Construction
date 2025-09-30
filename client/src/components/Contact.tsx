@@ -32,11 +32,53 @@ export function Contact() {
     window.location.href = "tel:0664382352";
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    // FormSubmit integration would go here
-    alert("Thank you! We'll be in touch soon.");
+    
+    if (!formData.service) {
+      alert("Please select a service type");
+      return;
+    }
+    
+    if (!formData.name || !formData.phone || !formData.suburb || !formData.message) {
+      alert("Please fill in all required fields");
+      return;
+    }
+    
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/info@jullucaconstruction.co.za", {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          phone: formData.phone,
+          suburb: formData.suburb,
+          service: formData.service,
+          message: formData.message,
+          _subject: `New Quote Request from ${formData.name}`,
+          _template: "table",
+        })
+      });
+      
+      if (response.ok) {
+        alert("Thank you! We'll be in touch soon.");
+        setFormData({
+          name: "",
+          phone: "",
+          suburb: "",
+          service: "",
+          message: "",
+        });
+      } else {
+        alert("There was an issue submitting your request. Please try WhatsApp or phone instead.");
+      }
+    } catch (error) {
+      console.error("Form submission error:", error);
+      alert("There was an issue submitting your request. Please try WhatsApp or phone instead.");
+    }
   };
 
   return (
@@ -127,6 +169,7 @@ export function Contact() {
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
                   <Input
+                    name="name"
                     placeholder="Your Name"
                     value={formData.name}
                     onChange={(e) =>
@@ -138,6 +181,7 @@ export function Contact() {
                 </div>
                 <div>
                   <Input
+                    name="phone"
                     type="tel"
                     placeholder="Phone Number"
                     value={formData.phone}
@@ -150,6 +194,7 @@ export function Contact() {
                 </div>
                 <div>
                   <Input
+                    name="suburb"
                     placeholder="Suburb"
                     value={formData.suburb}
                     onChange={(e) =>
@@ -161,6 +206,7 @@ export function Contact() {
                 </div>
                 <div>
                   <Select
+                    name="service"
                     value={formData.service}
                     onValueChange={(value) =>
                       setFormData({ ...formData, service: value })
@@ -184,6 +230,7 @@ export function Contact() {
                 </div>
                 <div>
                   <Textarea
+                    name="message"
                     placeholder="Tell us about your project..."
                     value={formData.message}
                     onChange={(e) =>
