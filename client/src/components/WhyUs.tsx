@@ -19,8 +19,8 @@ export function WhyUs() {
     },
     {
       icon: Shield,
-      title: "Experienced, Insured Team",
-      description: "Fully insured professionals with years of experience in construction and landscaping.",
+      title: "Experienced Team",
+      description: "Professionals with years of experience in construction and landscaping.",
     },
     {
       icon: Award,
@@ -39,8 +39,8 @@ export function WhyUs() {
     },
     {
       icon: CheckCircle2,
-      title: "12-24 Month Guarantee",
-      description: "Comprehensive workmanship guarantee for your peace of mind.",
+      title: "Our promise to you",
+      description: "Comprehensive workmanship for your peace of mind.",
     },
   ];
 
