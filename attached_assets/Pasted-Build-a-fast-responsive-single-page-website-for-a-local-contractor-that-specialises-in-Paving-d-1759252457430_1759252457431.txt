@@ -1,0 +1,124 @@
+Build a fast, responsive, single-page website for a local contractor that specialises in:
+Paving (driveways & footpaths), Swimming-pool paving, Tiling, Small construction projects (e.g., boma fire pit, braai area, pergola, planters), Painting, Plastering, Gardening services.
+
+Business
+
+Name: Julluca Construction
+
+Location/Areas served: Pretoria
+
+Phone: 066 438 2352 (use tel: link)
+
+WhatsApp: 277 66 438 2352 (use https://wa.me/[COUNTRYCODE][NUMBER]?text=Hi%20[BUSINESS]%2C%20I’d%20like%20a%20quote)
+
+Design
+
+Style: sturdy, trustworthy, “outdoor/earthy” look.
+
+Colours: Charcoal #2B2B2B, Sand #E9E1D1, Brick #B45F38 (accents), Leaf #2E7D32.
+
+Fonts: Headings—strong sans (e.g., Montserrat); Body—clean sans (e.g., Inter).
+
+Lightweight, no frameworks; semantic HTML, accessible (WCAG AA), good contrast, focus states, alt text.
+
+Header & Hero
+
+Sticky header with logo/brand left, anchor nav to sections, and a WhatsApp CTA button on the right (“WhatsApp Us” ➜ wa.me link).
+
+Hero section with bold H1 (e.g., “Quality Paving, Tiling & Outdoor Projects”), short subtext (mention free quotes + fast turnaround), and a primary WhatsApp CTA button. Optional background image with overlay.
+
+One-page Sections & IDs (in this order)
+
+#services — Services
+
+Grid cards with concise blurbs:
+
+Paving: driveways, footpaths, edging, repairs.
+
+Pool Paving: coping stones, slip-resistant finishes.
+
+Tiling: floors, bathrooms, patios.
+
+Small Builds: boma fire pits, braais, pergolas, planters.
+
+Painting & Plastering: interior/exterior, crack repair, re-skimming.
+
+Gardening: new lawns, beds, pruning, edging, clean-ups.
+
+Each card: icon (SVG or emoji), 1–2 lines, “Get a Quote” small link that scrolls to #contact.
+
+#before-after — Before & After Projects
+
+3–6 items with a vanilla-JS before/after slider (labelled “Before” / “After”), lazy-loaded images.
+
+#projects — Recent Projects
+
+Masonry or equal-height image grid (8–12 photos). Each item: short caption (service + suburb). Lightbox on click.
+
+#why-us — Why Choose Us
+
+4–6 bullets/cards, e.g.:
+
+Fixed, itemised quotes
+
+Experienced, insured team
+
+Quality materials & workmanship
+
+Clean site, on-time delivery
+
+Local references available
+
+12–24 month workmanship guarantee
+
+Add a small trust bar (⭐ ratings, years in business if applicable).
+
+#contact — Contact
+
+Two big buttons side-by-side:
+
+WhatsApp Us → https://wa.me/[COUNTRYCODE][NUMBER]?text=Hi%20[BUSINESS]%2C%20I’d%20like%20a%20quote%20for%20[paving/tiling].
+
+Call Now → tel:[PHONE]
+
+Show service areas, working hours, and a short note: “Free on-site quotes in [AREA].”
+
+(Optional) Minimal form with Name, Phone, Suburb, Service, Message that emails via FormSubmit (no backend).
+
+Nav
+
+Header links must scroll to: #services, #before-after, #projects, #why-us, #contact.
+
+Add a small “Back to top” button that appears after 200px scroll (smooth scroll, respects reduced-motion).
+
+Functionality (JS)
+
+Smooth scroll for anchor links; offset for sticky header.
+
+Before/after slider (drag handle or hover on mobile tap) with accessible labels.
+
+Lightweight lightbox for project images (no external libs).
+
+Lazy-load images (loading="lazy"), responsive srcset.
+
+SEO
+
+<title> and meta description reflecting services + city.
+
+Use structured headings: one H1 in hero, logical H2s for sections.
+
+Alt text for all images (e.g., “After — charcoal pavers installed on driveway, [Suburb]”).
+
+Deliverables
+
+index.html with sections/IDs above, styles.css with variables for colours, script.js for slider/lightbox/scroll.
+
+Clean, commented code. No external dependencies required.
+
+Copy hints (short placeholders)
+
+Hero subtext: “Paving, tiling, small builds, painting, plastering & gardening—done right, on time, and on budget.”
+
+CTA text: “WhatsApp Us for a Free Quote”.
+
+Why-us line: “Local team, fixed quotes, tidy site—proudly serving [CITY].”
