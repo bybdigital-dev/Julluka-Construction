@@ -220,7 +220,7 @@ export function Contact() {
                       <SelectItem value="paving">Paving</SelectItem>
                       <SelectItem value="pool-paving">Pool Paving</SelectItem>
                       <SelectItem value="tiling">Tiling</SelectItem>
-                      <SelectItem value="small-builds">Small Builds</SelectItem>
+                      <SelectItem value="small-builds">Construction Builds</SelectItem>
                       <SelectItem value="painting">
                         Painting & Plastering
                       </SelectItem>
