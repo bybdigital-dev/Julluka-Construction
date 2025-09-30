@@ -46,7 +46,7 @@ export function Contact() {
     }
     
     try {
-      const response = await fetch("https://formsubmit.co/ajax/info@jullucaconstruction.co.za", {
+      const response = await fetch("https://formsubmit.co/buildyourbranddigital@gmail.com", {
         method: "POST",
         headers: {
           'Content-Type': 'application/json',

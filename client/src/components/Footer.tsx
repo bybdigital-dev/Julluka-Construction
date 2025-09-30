@@ -11,6 +11,7 @@ export function Footer() {
           <p className="text-background/80 mb-4">
             Quality Paving, Tiling & Outdoor Projects in Pretoria
           </p>
+          
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 text-sm text-background/70">
             <span>© {currentYear} Julluca Construction</span>
             <span className="hidden sm:inline">•</span>
@@ -22,7 +23,19 @@ export function Footer() {
             >
               066 438 2352
             </a>
+                      
           </div>
+          <p>
+            Developed by{" "}
+            <a
+              href="https://buildyourbrand.web.za/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline"
+            >
+              BYB Digital
+            </a>
+          </p>
         </div>
       </div>
     </footer>
