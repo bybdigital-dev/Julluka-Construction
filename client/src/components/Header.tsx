@@ -28,7 +28,7 @@ export function Header({ onNavigate }: HeaderProps) {
 
   const handleWhatsApp = () => {
     window.open(
-      "https://wa.me/27664382352?text=Hi%20Julluca%20Construction%2C%20I'd%20like%20a%20quote",
+      "https://wa.me/27664382352?text=Hi%20Julluka%20Construction%2C%20I'd%20like%20a%20quote",
       "_blank"
     );
   };
@@ -49,7 +49,7 @@ export function Header({ onNavigate }: HeaderProps) {
             className="font-heading font-bold text-2xl text-foreground hover-elevate active-elevate-2 px-3 py-2 rounded-md"
             data-testid="logo-button"
           >
-            Julluca Construction
+            Julluka Construction
           </button>
 
           <nav className="hidden md:flex items-center gap-1">

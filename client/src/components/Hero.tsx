@@ -9,7 +9,7 @@ interface HeroProps {
 export function Hero({ onNavigate }: HeroProps) {
   const handleWhatsApp = () => {
     window.open(
-      "https://wa.me/27664382352?text=Hi%20Julluca%20Construction%2C%20I'd%20like%20a%20quote",
+      "https://wa.me/27664382352?text=Hi%20Julluka%20Construction%2C%20I'd%20like%20a%20quote",
       "_blank"
     );
   };

@@ -23,7 +23,7 @@ export function Contact() {
 
   const handleWhatsApp = () => {
     window.open(
-      "https://wa.me/27664382352?text=Hi%20Julluca%20Construction%2C%20I'd%20like%20a%20quote",
+      "https://wa.me/27664382352?text=Hi%20Julluka%20Construction%2C%20I'd%20like%20a%20quote",
       "_blank"
     );
   };
@@ -46,7 +46,7 @@ export function Contact() {
     }
     
     try {
-      const response = await fetch("https://formsubmit.co/henripot@gmail.com", {
+      const response = await fetch("https://formsubmit.co/jullukaconstruction@gmail.com", {
         method: "POST",
         headers: {
           'Content-Type': 'application/json',
