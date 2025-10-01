@@ -2,8 +2,8 @@ import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import beforeDriveway from "@assets/generated_images/Before_driveway_renovation_photo_05bb4a7a.png";
 import afterDriveway from "@assets/generated_images/After_driveway_renovation_photo_43c78754.png";
-import beforePool from "@assets/generated_images/Before_pool_paving_photo_b7349b9c.png";
-import afterPool from "@assets/generated_images/After_pool_paving_photo_533a0030.png";
+import beforePool from "@assets/generated_images/Julluka_Construction_Before_Pool_1.jpeg";
+import afterPool from "@assets/generated_images/Julluka_Construction_After_Pool_1(2).jpeg";
 import beforeTiling from "@assets/generated_images/Before_tiling_renovation_photo_166ac69f.png";
 import afterTiling from "@assets/generated_images/After_tiling_renovation_photo_69002340.png";
 

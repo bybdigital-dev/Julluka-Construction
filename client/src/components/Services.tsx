@@ -18,12 +18,7 @@ export function Services({ onNavigate }: ServicesProps) {
     {
       icon: Hammer,
       title: "Paving",
-      description: "Driveways, footpaths, edging, and paving repairs with quality materials and professional craftsmanship.",
-    },
-    {
-      icon: Waves,
-      title: "Pool Paving",
-      description: "Coping stones and slip-resistant finishes for beautiful, safe pool areas.",
+      description: "Driveways, swimming pools, footpaths, kerbing, stairs, and paving repairs with quality materials and professional craftsmanship.",
     },
     {
       icon: SquareStack,
@@ -32,18 +27,18 @@ export function Services({ onNavigate }: ServicesProps) {
     },
     {
       icon: Flame,
-      title: "Construction Building",
-      description: "Boma fire pits, braai areas, pergolas, and planters to enhance your outdoor space.",
+      title: "Construction / Building",
+      description: "Renovations, concrete slabs, boma fire pits, braai areas to enhance your outdoor space.",
     },
     {
       icon: Brush,
       title: "Painting & Plastering",
-      description: "Interior and exterior painting, crack repair, and re-skimming for a fresh finish.",
+      description: "Interior and exterior painting, crack repair, rhinolite, ceilings, and re-skimming for a fresh finish.",
     },
     {
       icon: Leaf,
       title: "Gardening",
-      description: "New lawns, garden beds, pruning, edging, and complete garden clean-ups.",
+      description: "Irrigation, landscaping, gardening services, new lawns, garden beds, pruning, edging, and complete garden clean-ups.",
     },
   ];
 
