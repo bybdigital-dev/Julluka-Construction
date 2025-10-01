@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { X } from "lucide-react";
 import galleryDriveway from "@assets/generated_images/Project_gallery_driveway_f2324493.png";
-import galleryPool from "@assets/generated_images/Project_gallery_pool_150d6872.png";
+import galleryPool from "@assets/generated_images/Julluca_construction_swimming pool_paving.jpg";
 import galleryPatio from "@assets/generated_images/Project_gallery_patio_338c0328.png";
 import galleryFirePit from "@assets/generated_images/Project_gallery_fire_pit_4e9d4663.png";
 import galleryPergola from "@assets/generated_images/Project_gallery_pergola_8fde87ae.png";
@@ -20,7 +20,7 @@ export function Projects() {
 
   const projects: Project[] = [
     { image: galleryDriveway, title: "Herringbone Paver Driveway", location: "Centurion" },
-    { image: galleryPool, title: "Pool Paving & Coping", location: "Waterkloof" },
+    { image: galleryPool, title: "Pool Paving", location: "Waterkloof" },
     { image: galleryPatio, title: "Outdoor Patio Tiling", location: "Menlyn" },
     { image: galleryFirePit, title: "Boma Fire Pit", location: "Silver Lakes" },
     { image: galleryPergola, title: "Custom Pergola Build", location: "Faerie Glen" },
