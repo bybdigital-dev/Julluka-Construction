@@ -28,12 +28,12 @@ export function Services({ onNavigate }: ServicesProps) {
     {
       icon: Flame,
       title: "Construction / Building",
-      description: "Renovations, concrete slabs, boma fire pits, braai areas to enhance your outdoor space.",
+      description: "Renovations, custom ceilings, concrete slabs, boma fire pits, braai areas to enhance your outdoor space.",
     },
     {
       icon: Brush,
       title: "Painting & Plastering",
-      description: "Interior and exterior painting, crack repair, rhinolite, ceilings, and re-skimming for a fresh finish.",
+      description: "Interior and exterior painting, rhinolite and re-skimming for a fresh finish.",
     },
     {
       icon: Leaf,

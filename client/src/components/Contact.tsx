@@ -218,13 +218,13 @@ export function Contact() {
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="paving">Paving</SelectItem>
-                      <SelectItem value="pool-paving">Pool Paving</SelectItem>
-                      <SelectItem value="tiling">Tiling</SelectItem>
-                      <SelectItem value="small-builds">Construction Builds</SelectItem>
+                      <SelectItem value="pool-paving">Tiling</SelectItem>
+                      <SelectItem value="tiling">Construction</SelectItem>
+                      <SelectItem value="small-builds">Painting & Plastering</SelectItem>
                       <SelectItem value="painting">
-                        Painting & Plastering
+                        Gardening
                       </SelectItem>
-                      <SelectItem value="gardening">Gardening</SelectItem>
+                      
                     </SelectContent>
                   </Select>
                 </div>

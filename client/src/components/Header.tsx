@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import jullukaLogo from "@assets/generated_images/Julluka_Construction_Logo_1_BGrem.png";
+
 
 interface HeaderProps {
   onNavigate: (sectionId: string) => void;
@@ -48,8 +50,16 @@ export function Header({ onNavigate }: HeaderProps) {
             onClick={() => onNavigate("hero")}
             className="font-heading font-bold text-2xl text-foreground hover-elevate active-elevate-2 px-3 py-2 rounded-md"
             data-testid="logo-button"
+            aria-label="Julluka Construction - Home"
           >
-            Julluka Construction
+            <span className="flex items-center gap-2">
+              <img
+                src={jullukaLogo}
+                alt="Julluka Construction logo"
+                className="h-20 w-auto"
+              />
+              <span>Julluka Construction</span>
+            </span>
           </button>
 
           <nav className="hidden md:flex items-center gap-1">
