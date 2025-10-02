@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { Card } from "@/components/ui/card";
-import beforeDriveway from "@assets/generated_images/Before_driveway_renovation_photo_05bb4a7a.png";
-import afterDriveway from "@assets/generated_images/After_driveway_renovation_photo_43c78754.png";
+import beforeDriveway from "@assets/generated_images/Pavement_Before.jpeg";
+import afterDriveway from "@assets/generated_images/Pavement_After.jpeg";
 import beforePool from "@assets/generated_images/Julluka_Construction_Before_Pool_1.jpeg";
 import afterPool from "@assets/generated_images/Julluka_Construction_After_Pool_1(2).jpeg";
-import beforeTiling from "@assets/generated_images/Before_tiling_renovation_photo_166ac69f.png";
-import afterTiling from "@assets/generated_images/After_tiling_renovation_photo_69002340.png";
+import beforeTiling from "@assets/generated_images/Shower_Before1.jpeg";
+import afterTiling from "@assets/generated_images/Shower_After1.jpeg";
 
 interface ComparisonSliderProps {
   beforeImage: string;
@@ -112,7 +112,7 @@ export function BeforeAfter() {
     {
       before: beforeTiling,
       after: afterTiling,
-      title: "Bathroom Tiling - Brooklyn",
+      title: "Shower Tiling - Brooklyn",
     },
   ];
 

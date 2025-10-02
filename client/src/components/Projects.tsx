@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { X } from "lucide-react";
-import galleryDriveway from "@assets/generated_images/Project_gallery_driveway_f2324493.png";
+import galleryDriveway from "@assets/generated_images/Renovation.jpeg";
 import galleryPool from "@assets/generated_images/Julluca_construction_swimming pool_paving.jpg";
-import galleryPatio from "@assets/generated_images/Project_gallery_patio_338c0328.png";
-import galleryFirePit from "@assets/generated_images/Project_gallery_fire_pit_4e9d4663.png";
-import galleryPergola from "@assets/generated_images/Project_gallery_pergola_8fde87ae.png";
-import galleryPainting from "@assets/generated_images/Project_gallery_painting_5b56aa52.png";
-import galleryGarden from "@assets/generated_images/Project_gallery_garden_44ae208e.png";
-import galleryBraai from "@assets/generated_images/Project_gallery_braai_7ccd4e91.png";
+import galleryPatio from "@assets/generated_images/Paving1.jpeg";
+import galleryFirePit from "@assets/generated_images/Tiles.jpeg";
+import galleryPergola from "@assets/generated_images/Ceiling11.jpeg";
+import galleryPainting from "@assets/generated_images/Ceiling3.jpeg";
+import galleryGarden from "@assets/generated_images/Wall.jpeg";
+import galleryBraai from "@assets/generated_images/Irrigation.jpeg";
 
 interface Project {
   image: string;
@@ -19,14 +19,14 @@ export function Projects() {
   const [lightboxImage, setLightboxImage] = useState<Project | null>(null);
 
   const projects: Project[] = [
-    { image: galleryDriveway, title: "Herringbone Paver Driveway", location: "Centurion" },
+    { image: galleryDriveway, title: "Exterior house renovation", location: "Centurion" },
     { image: galleryPool, title: "Pool Paving", location: "Waterkloof" },
-    { image: galleryPatio, title: "Outdoor Patio Tiling", location: "Menlyn" },
-    { image: galleryFirePit, title: "Boma Fire Pit", location: "Silver Lakes" },
-    { image: galleryPergola, title: "Custom Pergola Build", location: "Faerie Glen" },
-    { image: galleryPainting, title: "Exterior House Painting", location: "Brooklyn" },
-    { image: galleryGarden, title: "Garden Landscaping", location: "Garsfontein" },
-    { image: galleryBraai, title: "Braai Area Construction", location: "Eldoraigne" },
+    { image: galleryPatio, title: "Pattern paving", location: "Menlyn" },
+    { image: galleryFirePit, title: "Tiling", location: "Silver Lakes" },
+    { image: galleryPergola, title: "Custom Ceiling", location: "Faerie Glen" },
+    { image: galleryPainting, title: "Rhinolite ceiling", location: "Brooklyn" },
+    { image: galleryGarden, title: "Walls", location: "Garsfontein" },
+    { image: galleryBraai, title: "Irrigation installation", location: "Eldoraigne" },
   ];
 
   return (
