@@ -9,7 +9,7 @@ export function Footer() {
             Julluka Construction
           </h3>
           <p className="text-background/80 mb-4">
-            Quality Paving, Tiling & Outdoor Projects in Pretoria
+            Quality Paving, Tiling, Construction & Gardening Projects in Pretoria
           </p>
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 text-sm text-background/70">

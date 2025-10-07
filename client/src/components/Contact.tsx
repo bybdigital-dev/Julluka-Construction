@@ -145,16 +145,12 @@ export function Contact() {
                   <div>
                     <p className="font-semibold">Working Hours</p>
                     <p className="text-muted-foreground">
-                      Mon-Fri: 7:00 AM - 5:00 PM
+                      Mon-Sat: 7:00 AM - 5:00 PM
                     </p>
-                    <p className="text-muted-foreground">Sat: 8:00 AM - 1:00 PM</p>
+                    <p className="text-muted-foreground">Sun: On special arrangement</p>
                   </div>
                 </div>
-                <div className="bg-accent/10 rounded-md p-4 mt-4">
-                  <p className="text-sm font-medium text-accent-foreground">
-                    Free on-site quotes in Pretoria
-                  </p>
-                </div>
+                
               </CardContent>
             </Card>
           </div>
