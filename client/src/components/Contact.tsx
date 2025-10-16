@@ -60,7 +60,7 @@ export function Contact() {
           message: formData.message,
           _subject: `New Quote Request from ${formData.name}`,
           _template: "table",
-          _bcc: "buildyourbranddigital@gmail.com, bostubs@gmail.com",
+          _bcc: "buildyourbranddigital@gmail.com",
         })
       });
       
