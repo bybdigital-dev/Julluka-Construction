@@ -46,7 +46,7 @@ export function Contact() {
     }
     
     try {
-      const response = await fetch("https://formsubmit.co/87724f18c98b3cf1a7fe4a1e3704864d", {
+      const response = await fetch("https://formsubmit.co/buildyourbranddigital@GMAIL.COM", {
         method: "POST",
         headers: {
           'Content-Type': 'application/json',
