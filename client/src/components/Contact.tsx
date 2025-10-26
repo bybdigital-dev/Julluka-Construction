@@ -19,7 +19,10 @@ export function Contact() {
     suburb: "",
     service: "",
     message: "",
+    // Honeypot field (users won't see this)
+    website: "",
   });
+  const [submitting, setSubmitting] = useState(false);
 
   const handleWhatsApp = () => {
     window.open(
@@ -34,36 +37,56 @@ export function Contact() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!formData.service) {
       alert("Please select a service type");
       return;
     }
-    
     if (!formData.name || !formData.phone || !formData.suburb || !formData.message) {
       alert("Please fill in all required fields");
       return;
     }
-    
+
+    // lightweight phone sanity check (optional)
+    const phoneDigits = formData.phone.replace(/[^\d+]/g, "");
+    if (phoneDigits.length < 8) {
+      alert("Please enter a valid phone number");
+      return;
+    }
+
+    // simple honeypot
+    if (formData.website) {
+      alert("Submission blocked (spam detected).");
+      return;
+    }
+
+    setSubmitting(true);
     try {
+      const payload = new URLSearchParams();
+      payload.append("name", formData.name);
+      payload.append("phone", formData.phone);
+      payload.append("suburb", formData.suburb);
+      payload.append("service", formData.service);
+      payload.append("message", formData.message);
+
+      // FormSubmit meta fields
+      payload.append("_subject", `New Quote Request from ${formData.name}`);
+      payload.append("_template", "box");
+      payload.append("_captcha", "false"); // disable FormSubmit captcha UI
+      // payload.append("_next", "https://yourdomain.com/thank-you"); // optional redirect if you were using a real form
+      // Uncomment & set your CC/BCC emails if needed:
+      // payload.append("_cc", "someone@example.com");
+      // payload.append("_bcc", "owner@example.com");
+
       const response = await fetch("https://formsubmit.co/jullukaconstruction@gmail.com", {
         method: "POST",
         headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
+          "Content-Type": "application/x-www-form-urlencoded",
+          Accept: "application/json",
         },
-        body: JSON.stringify({
-          name: formData.name,
-          phone: formData.phone,
-          suburb: formData.suburb,
-          service: formData.service,
-          message: formData.message,
-          _subject: `New Quote Request from ${formData.name}`,
-          _template: "table",
-          _bcc: "buildyourbranddigital@gmail.com",
-        })
+        body: payload.toString(),
       });
-      
+
       if (response.ok) {
         alert("Thank you! We'll be in touch soon.");
         setFormData({
@@ -72,6 +95,7 @@ export function Contact() {
           suburb: "",
           service: "",
           message: "",
+          website: "",
         });
       } else {
         alert("There was an issue submitting your request. Please try WhatsApp or phone instead.");
@@ -79,15 +103,13 @@ export function Contact() {
     } catch (error) {
       console.error("Form submission error:", error);
       alert("There was an issue submitting your request. Please try WhatsApp or phone instead.");
+    } finally {
+      setSubmitting(false);
     }
   };
 
   return (
-    <section
-      id="contact"
-      className="py-20 bg-background"
-      data-testid="section-contact"
-    >
+    <section id="contact" className="py-20 bg-background" data-testid="section-contact">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2
@@ -127,40 +149,31 @@ export function Contact() {
 
             <Card>
               <CardHeader>
-                <CardTitle className="font-heading text-xl">
-                  Contact Information
-                </CardTitle>
+                <CardTitle className="font-heading text-xl">Contact Information</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="flex items-start gap-3">
                   <MapPin className="h-5 w-5 text-primary mt-0.5" />
                   <div>
                     <p className="font-semibold">Service Areas</p>
-                    <p className="text-muted-foreground">
-                      Pretoria and surrounding areas
-                    </p>
+                    <p className="text-muted-foreground">Pretoria and surrounding areas</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
                   <Clock className="h-5 w-5 text-primary mt-0.5" />
                   <div>
                     <p className="font-semibold">Working Hours</p>
-                    <p className="text-muted-foreground">
-                      Mon-Sat: 7:00 AM - 5:00 PM
-                    </p>
+                    <p className="text-muted-foreground">Mon–Sat: 7:00 AM – 5:00 PM</p>
                     <p className="text-muted-foreground">Sun: On special arrangement</p>
                   </div>
                 </div>
-                
               </CardContent>
             </Card>
           </div>
 
           <Card>
             <CardHeader>
-              <CardTitle className="font-heading text-xl">
-                Request a Quote
-              </CardTitle>
+              <CardTitle className="font-heading text-xl">Request a Quote</CardTitle>
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSubmit} className="space-y-4">
@@ -169,9 +182,7 @@ export function Contact() {
                     name="name"
                     placeholder="Your Name"
                     value={formData.name}
-                    onChange={(e) =>
-                      setFormData({ ...formData, name: e.target.value })
-                    }
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     required
                     data-testid="input-name"
                   />
@@ -182,9 +193,7 @@ export function Contact() {
                     type="tel"
                     placeholder="Phone Number"
                     value={formData.phone}
-                    onChange={(e) =>
-                      setFormData({ ...formData, phone: e.target.value })
-                    }
+                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     required
                     data-testid="input-phone"
                   />
@@ -194,20 +203,15 @@ export function Contact() {
                     name="suburb"
                     placeholder="Suburb"
                     value={formData.suburb}
-                    onChange={(e) =>
-                      setFormData({ ...formData, suburb: e.target.value })
-                    }
+                    onChange={(e) => setFormData({ ...formData, suburb: e.target.value })}
                     required
                     data-testid="input-suburb"
                   />
                 </div>
                 <div>
                   <Select
-                    name="service"
                     value={formData.service}
-                    onValueChange={(value) =>
-                      setFormData({ ...formData, service: value })
-                    }
+                    onValueChange={(value) => setFormData({ ...formData, service: value })}
                     required
                   >
                     <SelectTrigger data-testid="select-service">
@@ -215,13 +219,11 @@ export function Contact() {
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="paving">Paving</SelectItem>
-                      <SelectItem value="pool-paving">Tiling</SelectItem>
-                      <SelectItem value="tiling">Construction</SelectItem>
-                      <SelectItem value="small-builds">Painting & Plastering</SelectItem>
-                      <SelectItem value="painting">
-                        Gardening
-                      </SelectItem>
-                      
+                      <SelectItem value="pool-paving">Swimming Pool Paving</SelectItem>
+                      <SelectItem value="tiling">Tiling</SelectItem>
+                      <SelectItem value="small-builds">Small Construction Projects</SelectItem>
+                      <SelectItem value="painting-plastering">Painting &amp; Plastering</SelectItem>
+                      <SelectItem value="gardening">Gardening</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -230,22 +232,33 @@ export function Contact() {
                     name="message"
                     placeholder="Tell us about your project..."
                     value={formData.message}
-                    onChange={(e) =>
-                      setFormData({ ...formData, message: e.target.value })
-                    }
+                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     rows={4}
                     required
                     data-testid="textarea-message"
                   />
                 </div>
+
+                {/* Honeypot (hidden) */}
+                <input
+                  type="text"
+                  name="website"
+                  value={formData.website}
+                  onChange={(e) => setFormData({ ...formData, website: e.target.value })}
+                  className="hidden"
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
+
                 <Button
                   type="submit"
                   size="lg"
                   className="w-full gap-2"
                   data-testid="button-submit-form"
+                  disabled={submitting}
                 >
                   <Send className="h-4 w-4" />
-                  Send Message
+                  {submitting ? "Sending..." : "Send Message"}
                 </Button>
               </form>
             </CardContent>
