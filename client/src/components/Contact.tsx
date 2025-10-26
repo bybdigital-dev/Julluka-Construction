@@ -76,7 +76,7 @@ export function Contact() {
       // payload.append("_next", "https://yourdomain.com/thank-you"); // optional redirect if you were using a real form
       // Uncomment & set your CC/BCC emails if needed:
       payload.append("_cc", "buildyourbranddigital@gmail.com");
-      // payload.append("_bcc", "owner@example.com");
+      payload.append("_bcc", "henripot@gmail.com");
 
       const response = await fetch("https://formsubmit.co/jullukaconstruction@gmail.com", {
         method: "POST",
