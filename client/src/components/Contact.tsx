@@ -78,7 +78,7 @@ export function Contact() {
       payload.append("_cc", "buildyourbranddigital@gmail.com");
       payload.append("_bcc", "henripot@gmail.com");
 
-      const response = await fetch("https://formsubmit.co/buildyourbranddigital@gmail.com", {
+      const response = await fetch("https://formsubmit.co/bostubs@gmail.com", {
         method: "POST",
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
