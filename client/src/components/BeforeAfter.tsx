@@ -1,11 +1,17 @@
 import { useState } from "react";
 import { Card } from "@/components/ui/card";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+
 import beforeDriveway from "@assets/generated_images/Pavement_Before.jpeg";
 import afterDriveway from "@assets/generated_images/Pavement_After.jpeg";
 import beforePool from "@assets/generated_images/Julluka_Construction_Before_Pool_1.jpeg";
 import afterPool from "@assets/generated_images/Julluka_Construction_After_Pool_1(2).jpeg";
 import beforeTiling from "@assets/generated_images/Shower_Before1.jpeg";
 import afterTiling from "@assets/generated_images/Shower_After1.jpeg";
+import beforePaving from "@assets/generated_images/Before_Paving.jpeg";
+import afterPaving from "@assets/generated_images/After_Paving.jpeg";
+import beforePoolpiping from "@assets/generated_images/Before_Poolpiping.jpeg";
+import afterPoolpiping from "@assets/generated_images/After_Poolpiping.jpeg";
 
 interface ComparisonSliderProps {
   beforeImage: string;
@@ -27,7 +33,7 @@ function ComparisonSlider({ beforeImage, afterImage, title, index }: ComparisonS
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!isDragging) return;
     const rect = e.currentTarget.getBoundingClientRect();
-    handleMove(e.clientX, rect);
+    handleMove(e.clientTarget instanceof Element ? e.clientX : e.clientX, rect);
   };
 
   const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
@@ -55,7 +61,7 @@ function ComparisonSlider({ beforeImage, afterImage, title, index }: ComparisonS
           className="absolute inset-0 w-full h-full object-cover"
           loading="lazy"
         />
-        
+
         <div
           className="absolute inset-0 w-full h-full overflow-hidden"
           style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
@@ -87,9 +93,12 @@ function ComparisonSlider({ beforeImage, afterImage, title, index }: ComparisonS
           After
         </div>
       </div>
-      
+
       <div className="p-4">
-        <h3 className="font-heading font-semibold text-lg" data-testid={`text-comparison-title-${index}`}>
+        <h3
+          className="font-heading font-semibold text-lg"
+          data-testid={`text-comparison-title-${index}`}
+        >
           {title}
         </h3>
       </div>
@@ -114,7 +123,37 @@ export function BeforeAfter() {
       after: afterTiling,
       title: "Shower Tiling - Brooklyn",
     },
+    {
+      before: beforePaving,
+      after: afterPaving,
+      title: "Paving - Wonderboom",
+    },
+    {
+      before: beforePoolpiping,
+      after: afterPoolpiping,
+      title: "Pool Piping - Elardus Park",
+    },
+    // 🔻 Add more items here to fill your 4x4, 8x4, etc.
   ];
+
+  // 4 x 4 grid on large screens
+  const itemsPerPage = 4;
+  const [currentPage, setCurrentPage] = useState(0);
+
+  const totalPages = Math.max(1, Math.ceil(comparisons.length / itemsPerPage));
+  const startIndex = currentPage * itemsPerPage;
+  const currentComparisons = comparisons.slice(
+    startIndex,
+    startIndex + itemsPerPage
+  );
+
+  const handlePrev = () => {
+    setCurrentPage((prev) => (prev === 0 ? totalPages - 1 : prev - 1));
+  };
+
+  const handleNext = () => {
+    setCurrentPage((prev) => (prev === totalPages - 1 ? 0 : prev + 1));
+  };
 
   return (
     <section
@@ -131,20 +170,48 @@ export function BeforeAfter() {
             Before & After
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            See the transformation. Drag the slider to compare before and after results
+            See the transformation. Drag the slider to compare before and after
+            results
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {comparisons.map((comparison, index) => (
-            <ComparisonSlider
-              key={index}
-              beforeImage={comparison.before}
-              afterImage={comparison.after}
-              title={comparison.title}
-              index={index}
-            />
-          ))}
+        {/* Wrapper so we can position arrows on the sides */}
+        <div className="relative">
+          {/* Grid – 4 columns on large screens to give you a 4x4 layout */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {currentComparisons.map((comparison, index) => (
+              <ComparisonSlider
+                key={startIndex + index}
+                beforeImage={comparison.before}
+                afterImage={comparison.after}
+                title={comparison.title}
+                index={startIndex + index}
+              />
+            ))}
+          </div>
+
+          {/* Arrow buttons */}
+          {totalPages > 1 && (
+            <>
+              <button
+                type="button"
+                onClick={handlePrev}
+                aria-label="Previous gallery"
+                className="hidden md:flex items-center justify-center absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 bg-background/80 backdrop-blur border rounded-full shadow-lg p-3 hover:-translate-x-2 hover:shadow-xl transition-all"
+              >
+                <ChevronLeft className="w-6 h-6" />
+              </button>
+
+              <button
+                type="button"
+                onClick={handleNext}
+                aria-label="Next gallery"
+                className="hidden md:flex items-center justify-center absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 bg-background/80 backdrop-blur border rounded-full shadow-lg p-3 hover:translate-x-2 hover:shadow-xl transition-all"
+              >
+                <ChevronRight className="w-6 h-6" />
+              </button>
+            </>
+          )}
         </div>
       </div>
     </section>
