@@ -197,7 +197,7 @@ export function BeforeAfter() {
                 type="button"
                 onClick={handlePrev}
                 aria-label="Previous gallery"
-                className="hidden md:flex items-center justify-center absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 bg-background/80 backdrop-blur border rounded-full shadow-lg p-3 hover:-translate-x-2 hover:shadow-xl transition-all"
+                className="flex items-center justify-center absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 bg-background/80 backdrop-blur border rounded-full shadow-lg p-3 hover:-translate-x-2 hover:shadow-xl transition-all"
               >
                 <ChevronLeft className="w-6 h-6" />
               </button>
