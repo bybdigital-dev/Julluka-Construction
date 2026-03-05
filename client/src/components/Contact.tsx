@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useRef } from "react";
 import {
   Select,
   SelectContent,
@@ -23,6 +24,8 @@ export function Contact() {
     website: "",
   });
   const [submitting, setSubmitting] = useState(false);
+
+  const t0Ref = useRef(Date.now());
 
   const handleWhatsApp = () => {
     window.open(
@@ -53,7 +56,7 @@ export function Contact() {
 
     const phoneDigits = formData.phone.replace(/[^\d+]/g, "");
     if (phoneDigits.length < 8) {
-      alert("Please enter a valid phone number/s");
+      alert("Please enter a valid phone number");
       return;
     }
 
@@ -65,24 +68,45 @@ export function Contact() {
     setSubmitting(true);
 
     try {
-      const response = await fetch(`${WORKER_URL}/submit/${FORM_ID}`, {
+      const payload = {
+        ...formData,
+
+        // REQUIRED by Worker
+        formId: FORM_ID,
+
+        // helpful for email templates
+        name: formData.name,
+
+        // anti-bot timer
+        _t0: t0Ref.current,
+
+        // honeypot
+        hp: formData.website,
+      };
+
+      const response = await fetch(WORKER_URL, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          name: formData.name,
-          phone: formData.phone,
-          suburb: formData.suburb,
-          service: formData.service,
-          message: formData.message,
-          hp: formData.website,
-        }),
+        body: JSON.stringify(payload),
       });
 
-      if (!response.ok) {
-        const text = await response.text();
-        throw new Error(text);
+      // Worker redirect handling (same as working example)
+      if (response.type === "opaqueredirect" || response.redirected) {
+        alert("Thank you! We'll be in touch soon.");
+        return;
+      }
+
+      const text = await response.text();
+
+      let json: any = {};
+      try {
+        json = text ? JSON.parse(text) : {};
+      } catch {}
+
+      if (!response.ok || json?.ok === false) {
+        throw new Error(json?.error || text || "Submission failed");
       }
 
       alert("Thank you! We'll be in touch soon.");
