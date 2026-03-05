@@ -16,6 +16,7 @@ import {
 export function Contact() {
   const [formData, setFormData] = useState({
     name: "",
+    email: "",
     phone: "",
     suburb: "",
     service: "",
@@ -49,7 +50,7 @@ export function Contact() {
       return;
     }
 
-    if (!formData.name || !formData.phone || !formData.suburb || !formData.message) {
+    if (!formData.name || !formData.email || !formData.phone || !formData.suburb || !formData.message) {
       alert("Please fill in all required fields");
       return;
     }
@@ -113,6 +114,7 @@ export function Contact() {
 
       setFormData({
         name: "",
+        email: "",
         phone: "",
         suburb: "",
         service: "",
@@ -205,6 +207,17 @@ export function Contact() {
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     required
                     data-testid="input-name"
+                  />
+                </div>
+                <div>
+                  <Input
+                    name="email"
+                    type="email"
+                    placeholder="Email Address"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    required
+                    data-testid="input-email"
                   />
                 </div>
                 <div>
