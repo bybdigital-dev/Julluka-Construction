@@ -52,7 +52,7 @@ export function Contact() {
 
     const phoneDigits = formData.phone.replace(/[^\d+]/g, "");
     if (phoneDigits.length < 8) {
-      alert("Please enter a valid phone number");
+      alert("Please enter a valid phone number/s");
       return;
     }
 
