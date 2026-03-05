@@ -35,7 +35,8 @@ export function Contact() {
     window.location.href = "tel:0664382352";
   };
 
-  const WORKER_URL = "https://forms.afriwafel.co.za/submit/julluka-contact";
+  const WORKER_URL = "https://forms.afriwafel.co.za";
+  const FORM_ID = "julluka-contact";
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -56,7 +57,6 @@ export function Contact() {
       return;
     }
 
-    // Honeypot spam check
     if (formData.website) {
       alert("Submission blocked (spam detected).");
       return;
@@ -65,7 +65,7 @@ export function Contact() {
     setSubmitting(true);
 
     try {
-      const response = await fetch(WORKER_URL, {
+      const response = await fetch(`${WORKER_URL}/submit/${FORM_ID}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -76,7 +76,7 @@ export function Contact() {
           suburb: formData.suburb,
           service: formData.service,
           message: formData.message,
-          hp: formData.website, // honeypot for worker spam check
+          hp: formData.website,
         }),
       });
 
