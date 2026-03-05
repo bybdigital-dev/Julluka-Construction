@@ -35,7 +35,7 @@ export function Contact() {
     window.location.href = "tel:0664382352";
   };
 
-  const WORKER_URL = "https://forms.afriwafel.co.za";
+  const WORKER_URL = "https://forms.afriwafel.co.za/submit";
   const FORM_ID = "julluka-contact";
 
   const handleSubmit = async (e: React.FormEvent) => {
