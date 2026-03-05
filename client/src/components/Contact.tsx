@@ -35,6 +35,8 @@ export function Contact() {
     window.location.href = "tel:0664382352";
   };
 
+  const WORKER_URL = "https://forms.afriwafel.co.za/submit/julluka-contact";
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -42,64 +44,58 @@ export function Contact() {
       alert("Please select a service type");
       return;
     }
+
     if (!formData.name || !formData.phone || !formData.suburb || !formData.message) {
       alert("Please fill in all required fields");
       return;
     }
 
-    // lightweight phone sanity check (optional)
     const phoneDigits = formData.phone.replace(/[^\d+]/g, "");
     if (phoneDigits.length < 8) {
       alert("Please enter a valid phone number");
       return;
     }
 
-    // simple honeypot
+    // Honeypot spam check
     if (formData.website) {
       alert("Submission blocked (spam detected).");
       return;
     }
 
     setSubmitting(true);
+
     try {
-      const payload = new URLSearchParams();
-      payload.append("name", formData.name);
-      payload.append("phone", formData.phone);
-      payload.append("suburb", formData.suburb);
-      payload.append("service", formData.service);
-      payload.append("message", formData.message);
-
-      // FormSubmit meta fields
-      payload.append("_subject", `New Quote Request from ${formData.name}`);
-      payload.append("_template", "box");
-      payload.append("_captcha", "false"); // disable FormSubmit captcha UI
-      // payload.append("_next", "https://yourdomain.com/thank-you"); // optional redirect if you were using a real form
-      // Uncomment & set your CC/BCC emails if needed:
-      payload.append("_cc", "buildyourbranddigital@gmail.com");
-      payload.append("_bcc", "henripot@gmail.com");
-
-      const response = await fetch("https://formsubmit.co/bostubs@gmail.com", {
+      const response = await fetch(WORKER_URL, {
         method: "POST",
         headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-          Accept: "application/json",
+          "Content-Type": "application/json",
         },
-        body: payload.toString(),
+        body: JSON.stringify({
+          name: formData.name,
+          phone: formData.phone,
+          suburb: formData.suburb,
+          service: formData.service,
+          message: formData.message,
+          hp: formData.website, // honeypot for worker spam check
+        }),
       });
 
-      if (response.ok) {
-        alert("Thank you! We'll be in touch soon.");
-        setFormData({
-          name: "",
-          phone: "",
-          suburb: "",
-          service: "",
-          message: "",
-          website: "",
-        });
-      } else {
-        alert("There was an issue submitting your request. Please try WhatsApp or phone instead.");
+      if (!response.ok) {
+        const text = await response.text();
+        throw new Error(text);
       }
+
+      alert("Thank you! We'll be in touch soon.");
+
+      setFormData({
+        name: "",
+        phone: "",
+        suburb: "",
+        service: "",
+        message: "",
+        website: "",
+      });
+
     } catch (error) {
       console.error("Form submission error:", error);
       alert("There was an issue submitting your request. Please try WhatsApp or phone instead.");
